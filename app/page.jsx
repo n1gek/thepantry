@@ -240,7 +240,7 @@ export default function Home() {
 
     <Box flex={1} height={'100%'} overflow={'auto'}>
 
-      <Box padding={{xs: 2, md: 8}} bgcolor={'#483248'}>
+      <Box padding={{xs: 1, md: 5}} bgcolor={'#483248'}>
         <Stack direction={'row'} width={'100%'}>
           <Typography variant='h3' textAlign={'left'} color={'white'}>Welcome to Your Pantry!</Typography>
           <Box flexGrow={1} textAlign={'right'} mt={15} bgcolor={'whitesmoke'} borderRadius={5} >
@@ -258,7 +258,7 @@ export default function Home() {
               <Box width={'60%'} height={'25%'} bgcolor={'#c8a2c8'} borderRadius={3} color={'white'}>
                 <Typography variant='h5'>{ item.name.charAt(0).toUpperCase()  + item.name.slice(1)}</Typography>
                 <Typography variant='h6'>Quantity: {item.quantity}</Typography>
-                <Stack direction={'row'} justifyContent={'space-between'} paddingTop={2}>
+                <Stack direction={'row'} justifyContent={'space-between'}>
                 <Button startIcon={<AddIcon/>} onClick={() => increement(item.name)} sx={{color: 'white'}} variant='text'>Add</Button>
                 <Button sx={{marginLeft: 1, color: 'error'}} onClick={() => removeItem(item.name)} color='error' startIcon={<DeleteIcon/>} variant='text'>Delete</Button>
                 </Stack>
