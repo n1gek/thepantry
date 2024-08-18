@@ -250,12 +250,12 @@ export default function Home() {
       </Box>
 
 
-      <Box bgcolor={'#dcd0ff'} display={'grid'} gridTemplateColumns={{xs: '2fr', sm: 'repeat(3, 1fr)'}} paddingLeft={7} alignItems={'center'}> 
+      <Box bgcolor={'#dcd0ff'} display={'grid'} gridTemplateColumns={{xs: '2fr', sm: 'repeat(3, 1fr)'}} paddingLeft={10} alignItems={'center'}> 
         {filteredPantryList.map((item) => (
           <ItemBox key={item} padding={5} width={'100%'}>
              <img src='icon2.jpeg'/>
               {/* <img src={ingredientImages[item.name] || 'icon2.jpeg'} onLoad={() => fetchImage(item.name)}/> */}
-              <Box width={'70%'} height={'25%'} bgcolor={'#c8a2c8'} borderRadius={3} color={'white'}>
+              <Box width={'60%'} height={'25%'} bgcolor={'#c8a2c8'} borderRadius={3} color={'white'}>
                 <Typography variant='h5'>{ item.name.charAt(0).toUpperCase()  + item.name.slice(1)}</Typography>
                 <Typography variant='h6'>Quantity: {item.quantity}</Typography>
                 <Stack direction={'row'} justifyContent={'space-between'}>
