@@ -197,7 +197,7 @@ const fetchImage = async (itemName) => {
       <Box width={"20%"} bgcolor={'#967bb6'}>
         <Stack mt={10} padding={3} direction={'column'} spacing={2} marginTop={5}>
           <ItemBox> 
-            <img src="icon.jpeg"/></ItemBox>
+            <img src="pantry1.jpeg"/></ItemBox>
             <Button variant='contained' sx={{color: 'white', fontSize: '1.5rem'}} startIcon={<HomeIcon color="secondary"/>}> Pantry</Button>
 
             <Button  variant='contained' onClick={handleOpen} sx={{color: 'white', fontSize: '1.5rem'}} startIcon={<AddIcon fontSize='large' color='success'/>} > Add New Item</Button>
@@ -254,7 +254,7 @@ const fetchImage = async (itemName) => {
         {filteredPantryList.map((item) => (
           <ItemBox key={item} padding={5} width={'100%'}>
              {/* <img src='icon2.jpeg'/> */}
-              <img src={ingredientImages[item.name]} onLoad={() => fetchImage(item.name)}/>
+              <img src={ingredientImages[item.name] || 'icon2.jpeg'} onLoad={() => fetchImage(item.name)}/>
               <Box width={'60%'} height={'25%'} bgcolor={'#c8a2c8'} borderRadius={3} color={'white'}>
                 <Typography variant='h4'>{ item.name.charAt(0).toUpperCase()  + item.name.slice(1)}</Typography>
                 <Typography variant='h5'>Quantity: {item.quantity}</Typography>
