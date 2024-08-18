@@ -90,28 +90,28 @@ export default function Home() {
 
   const [ingredientImages, setIngredientImages] = useState({});
 
-const fetchImage = async (itemName) => {
-    if (!ingredientImages[itemName]) {
-        try {
-            const response = await fetch('../api/image', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ ingredient: itemName }),
-            });
+// const fetchImage = async (itemName) => {
+//     if (!ingredientImages[itemName]) {
+//         try {
+//             const response = await fetch('../api/image', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                 },
+//                 body: JSON.stringify({ ingredient: itemName }),
+//             });
 
-            if (response.ok) {
-                const data = await response.json();
-                setIngredientImages(prev => ({ ...prev, [itemName]: data.imageUrl }));
-            } else {
-                console.error('Failed to fetch image:', await response.text());
-            }
-        } catch (error) {
-            console.error('Fetch error:', error);
-        }
-    }
-};
+//             if (response.ok) {
+//                 const data = await response.json();
+//                 setIngredientImages(prev => ({ ...prev, [itemName]: data.imageUrl }));
+//             } else {
+//                 console.error('Failed to fetch image:', await response.text());
+//             }
+//         } catch (error) {
+//             console.error('Fetch error:', error);
+//         }
+//     }
+// };
 
 
   useEffect(() => {
@@ -253,13 +253,15 @@ const fetchImage = async (itemName) => {
       <Box bgcolor={'#dcd0ff'} display={'grid'} gridTemplateColumns={{xs: '2fr', sm: 'repeat(3, 1fr)'}} paddingLeft={10} alignItems={'center'}> 
         {filteredPantryList.map((item) => (
           <ItemBox key={item} padding={5} width={'100%'}>
-             {/* <img src='icon2.jpeg'/> */}
-              <img src={ingredientImages[item.name] || 'icon2.jpeg'} onLoad={() => fetchImage(item.name)}/>
+             <img src='icon2.jpeg'/>
+              {/* <img src={ingredientImages[item.name] || 'icon2.jpeg'} onLoad={() => fetchImage(item.name)}/> */}
               <Box width={'60%'} height={'25%'} bgcolor={'#c8a2c8'} borderRadius={3} color={'white'}>
                 <Typography variant='h5'>{ item.name.charAt(0).toUpperCase()  + item.name.slice(1)}</Typography>
                 <Typography variant='h6'>Quantity: {item.quantity}</Typography>
+                <Stack direction={'row'} justifyContent={'space-between'} paddingTop={2}>
                 <Button startIcon={<AddIcon/>} onClick={() => increement(item.name)} sx={{color: 'white'}} variant='text'>Add</Button>
                 <Button sx={{marginLeft: 1, color: 'error'}} onClick={() => removeItem(item.name)} color='error' startIcon={<DeleteIcon/>} variant='text'>Delete</Button>
+                </Stack>
               </Box>
           </ItemBox>
             ))}
