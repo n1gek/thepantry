@@ -198,9 +198,9 @@ export default function Home() {
         <Stack mt={10} padding={3} direction={'column'} spacing={2} marginTop={5}>
           <ItemBox alignContent={'center'}> 
             <img src="icon1.jpeg"/></ItemBox>
-            <Button variant='contained' sx={{color: 'white', fontSize: '1.2rem'}} startIcon={<HomeIcon color="secondary"/>}> Pantry</Button>
+            <Button variant='contained' sx={{color: 'white', fontSize: '1rem'}} startIcon={<HomeIcon color="secondary"/>}> Pantry</Button>
 
-            <Button  variant='contained' onClick={handleOpen} sx={{color: 'white', fontSize: '1.2rem'}} startIcon={<AddIcon fontSize='large' color='success'/>} > Add New Item</Button>
+            <Button  variant='contained' onClick={handleOpen} sx={{color: 'white', fontSize: '1rem'}} startIcon={<AddIcon fontSize='large' color='success'/>} > Add New Item</Button>
             <Modal open={openAddItem} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
               <Box sx={style}>
                 <Typography id="modal-modal-title" variant="h5" alignContent={'center'} component="h2">
@@ -214,7 +214,7 @@ export default function Home() {
               </Box>
             </Modal>
 
-            <Button onClick={handleRecipeOpen} variant='contained' sx={{ color:'white', fontSize: '1.2rem'}}>Recipes</Button>
+            <Button onClick={handleRecipeOpen} variant='contained' sx={{ color:'white', fontSize: '1rem'}}>Recipes</Button>
               <Modal open={openRecipe} onClose={handleRecipeClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
                 <Box sx={{ top: '10%', width: '80%', position: 'relative', left: '10%', height: '80%', border:'2px solid', color:'white', bgcolor:'#50404d', p:4}} overflow={'auto'}>
                   <Typography id="modal-modal-title" variant="h3" align='center' bgcolor={'#bf94e4'} component="h2">
@@ -242,8 +242,8 @@ export default function Home() {
 
       <Box padding={{xs: 1, md: 5}} bgcolor={'#483248'}>
         <Stack direction={'row'} width={'100%'}>
-          <Typography variant='h3' textAlign={'left'} color={'white'}>Welcome to Your Pantry!</Typography>
-          <Box flexGrow={1} textAlign={'right'} mt={15} bgcolor={'whitesmoke'} borderRadius={5} >
+          <Typography variant='h5' textAlign={'left'} color={'white'}>Welcome to Your Pantry!</Typography>
+          <Box flexGrow={1} textAlign={'right'} mt={10} bgcolor={'whitesmoke'} borderRadius={5} >
             <TextField label="Search item" fullWidth variant="outlined"  value={SearchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
           </Box>
         </Stack>
