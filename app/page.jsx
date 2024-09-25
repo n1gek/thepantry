@@ -25,7 +25,7 @@ const style = {
   top: '30%',
   left: '25%',
   width: '30%',
-  height: '30%',
+  height: '50%',
   bgcolor: '#e6e6fa',
   border: '2px solid',
   p: 4,
@@ -198,11 +198,11 @@ export default function Home() {
 
       <Box width={"20%"} bgcolor={'#967bb6'}>
         <Stack mt={10} padding={3} direction={'column'} spacing={2} marginTop={5}>
-          <ItemBox> 
-            <img src="icon.jpeg"/></ItemBox>
-            <Button variant='contained' sx={{color: 'white', fontSize: '1.5rem'}} startIcon={<HomeIcon color="secondary"/>}> Pantry</Button>
+          <ItemBox alignContent={'center'}> 
+            <img src="icon1.jpeg"/></ItemBox>
+            <Button variant='contained' sx={{color: 'white', fontSize: '1rem'}} startIcon={<HomeIcon color="secondary"/>}> Pantry</Button>
 
-            <Button  variant='contained' onClick={handleOpen} sx={{color: 'white', fontSize: '1.5rem'}} startIcon={<AddIcon fontSize='large' color='success'/>} > Add New Item</Button>
+            <Button  variant='contained' onClick={handleOpen} sx={{color: 'white', fontSize: '1rem'}} startIcon={<AddIcon fontSize='large' color='success'/>} > Add New Item</Button>
             <Modal open={openAddItem} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
               <Box sx={style}>
                 <Typography id="modal-modal-title" variant="h5" alignContent={'center'} component="h2">
@@ -216,7 +216,7 @@ export default function Home() {
               </Box>
             </Modal>
 
-            <Button onClick={handleRecipeOpen} variant='contained' sx={{ color:'white', fontSize: '1.5rem'}}>Recipes</Button>
+            <Button onClick={handleRecipeOpen} variant='contained' sx={{ color:'white', fontSize: '1rem'}}>Recipes</Button>
               <Modal open={openRecipe} onClose={handleRecipeClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
                 <Box sx={{ top: '10%', width: '80%', position: 'relative', left: '10%', height: '80%', border:'2px solid', color:'white', bgcolor:'#50404d', p:4}} overflow={'auto'}>
                   <Typography id="modal-modal-title" variant="h3" align='center' bgcolor={'#bf94e4'} component="h2">
@@ -242,10 +242,10 @@ export default function Home() {
 
     <Box flex={1} height={'100%'} overflow={'auto'}>
 
-      <Box padding={{xs: 2, md: 8}} bgcolor={'#483248'}>
+      <Box padding={{xs: 1, md: 5}} bgcolor={'#483248'}>
         <Stack direction={'row'} width={'100%'}>
-          <Typography variant='h3' textAlign={'left'} color={'white'}>Welcome to Your Pantry!</Typography>
-          <Box flexGrow={1} textAlign={'right'} mt={15} bgcolor={'whitesmoke'} borderRadius={5} >
+          <Typography variant='h5' textAlign={'left'} color={'white'}>Welcome to Your Pantry!</Typography>
+          <Box flexGrow={1} textAlign={'right'} mt={10} bgcolor={'whitesmoke'} borderRadius={5} >
             <TextField label="Search item" fullWidth variant="outlined"  value={SearchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
           </Box>
         </Stack>
@@ -255,13 +255,20 @@ export default function Home() {
       <Box bgcolor={'#dcd0ff'} display={'grid'} gridTemplateColumns={{xs: '2fr', sm: 'repeat(3, 1fr)'}} paddingLeft={10} alignItems={'center'}> 
         {filteredPantryList.map((item) => (
           <ItemBox key={item} padding={5} width={'100%'}>
+<<<<<<< HEAD
              {/* <img src='icon2.jpeg'/> */}
               <img src={ingredientImages[item.name]|| 'icon2.jpeg'}/>
+=======
+             <img src='icon2.jpeg'/>
+              {/* <img src={ingredientImages[item.name] || 'icon2.jpeg'} onLoad={() => fetchImage(item.name)}/> */}
+>>>>>>> 89d6885ef1bc77d5f074ea9e0ee32006c94e3636
               <Box width={'60%'} height={'25%'} bgcolor={'#c8a2c8'} borderRadius={3} color={'white'}>
-                <Typography variant='h4'>{ item.name.charAt(0).toUpperCase()  + item.name.slice(1)}</Typography>
-                <Typography variant='h5'>Quantity: {item.quantity}</Typography>
+                <Typography variant='h5'>{ item.name.charAt(0).toUpperCase()  + item.name.slice(1)}</Typography>
+                <Typography variant='h6'>Quantity: {item.quantity}</Typography>
+                <Stack direction={'row'} justifyContent={'space-between'}>
                 <Button startIcon={<AddIcon/>} onClick={() => increement(item.name)} sx={{color: 'white'}} variant='text'>Add</Button>
                 <Button sx={{marginLeft: 1, color: 'error'}} onClick={() => removeItem(item.name)} color='error' startIcon={<DeleteIcon/>} variant='text'>Delete</Button>
+                </Stack>
               </Box>
           </ItemBox>
             ))}
