@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const openai = new OpenAI({
-    apiKey: process.env['OPENAI_API_KEY']
+    apiKey: process.env.OPENAI_API_KEY || "sk-2LXNFDuZmhWIEzaRGh1_zmflgLFINl7NWLbU3KfxyqT3BlbkFJqlNC42KVchDanyXltWRF_jX5qSA9qoL0acolCdEOoA"
 });
 
 export default async function getRecipe(req, res) {
@@ -36,3 +36,15 @@ export default async function getRecipe(req, res) {
 }
 
 
+const ingredients = ["chicken", "spaghetti"];
+
+getRecipe({ method: 'POST', body: { ingredients } }, {
+    status: (code) => {
+        console.log('Status:', code);
+        return {
+            json: (data) => {
+                console.log('Response:', data);
+            }
+        };
+    }
+});

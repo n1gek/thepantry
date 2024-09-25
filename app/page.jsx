@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { firestore } from './firebase';
 import { useState, useEffect } from'react';
 import { getDocs, collection, query, getDoc, setDoc, doc, deleteDoc} from 'firebase/firestore';
+import { AuthProvider } from '../pages/AuthProvider';
 
 const ItemBox = styled(Box)(({ theme }) => ({
   textAlign: 'center',
@@ -90,28 +91,28 @@ export default function Home() {
 
   const [ingredientImages, setIngredientImages] = useState({});
 
-const fetchImage = async (itemName) => {
-    if (!ingredientImages[itemName]) {
-        try {
-            const response = await fetch('../api/image', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ ingredient: itemName }),
-            });
+// const fetchImage = async (itemName) => {
+//     if (!ingredientImages[itemName]) {
+//         try {
+//             const response = await fetch('../api/image', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                 },
+//                 body: JSON.stringify({ ingredient: itemName }),
+//             });
 
-            if (response.ok) {
-                const data = await response.json();
-                setIngredientImages(prev => ({ ...prev, [itemName]: data.imageUrl }));
-            } else {
-                console.error('Failed to fetch image:', await response.text());
-            }
-        } catch (error) {
-            console.error('Fetch error:', error);
-        }
-    }
-};
+//             if (response.ok) {
+//                 const data = await response.json();
+//                 setIngredientImages(prev => ({ ...prev, [itemName]: data.imageUrl }));
+//             } else {
+//                 console.error('Failed to fetch image:', await response.text());
+//             }
+//         } catch (error) {
+//             console.error('Fetch error:', error);
+//         }
+//     }
+// };
 
 
   useEffect(() => {
@@ -192,6 +193,7 @@ const fetchImage = async (itemName) => {
   const filteredPantryList = pantrylist.filter(item => item.name.toLowerCase().includes(SearchQuery.toLocaleLowerCase()));
 
   return (
+    <AuthProvider>
     <Box  flexDirection={{ xs: 'column', md: 'row' }} width='100%' height='100vh' display="flex" position="relative" overflow='hidden'>
 
       <Box width={"20%"} bgcolor={'#967bb6'}>
@@ -254,7 +256,7 @@ const fetchImage = async (itemName) => {
         {filteredPantryList.map((item) => (
           <ItemBox key={item} padding={5} width={'100%'}>
              {/* <img src='icon2.jpeg'/> */}
-              <img src={ingredientImages[item.name]} onLoad={() => fetchImage(item.name)}/>
+              <img src={ingredientImages[item.name]|| 'icon2.jpeg'}/>
               <Box width={'60%'} height={'25%'} bgcolor={'#c8a2c8'} borderRadius={3} color={'white'}>
                 <Typography variant='h4'>{ item.name.charAt(0).toUpperCase()  + item.name.slice(1)}</Typography>
                 <Typography variant='h5'>Quantity: {item.quantity}</Typography>
@@ -268,5 +270,8 @@ const fetchImage = async (itemName) => {
 
     </Box>
   </Box>
+  </AuthProvider>
   );
 }
+
+
